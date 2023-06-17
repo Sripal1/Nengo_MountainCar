@@ -45,5 +45,9 @@ while not done:
         new_q = (1-learningRate)*current_q+learningRate*(reward+discount*max_future_q) # formula for updating the Q-table
         q_table[discreteState + (action, )] = new_q # updating the Q-table
 
+    elif newState[0]>=env.goal_position:
+        q_table[discreteState + (action, )] = 0 # if we reach the goal, we set the Q value to 0
+
+    discreteState = newDiscreteState # updating the current state to the new state after taking the action (moving to the next state)
 
 env.close()
